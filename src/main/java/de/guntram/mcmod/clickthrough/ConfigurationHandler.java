@@ -19,12 +19,11 @@ public class ConfigurationHandler implements ModConfigurationHandler {
     private Pattern compiledPatterns[];
     private String patterns[];
     private static final String[] defaultPatterns = {
-        "\\[\\D+\\]",
+        "\\[buy\\]|\\[sell\\]|\\[shop\\]",
         "",
         "b\\s*\\d+|b\\s*\\d+\\s*:\\s*\\d+\\s*s|\\d+\\s*s",
         ""
     };
-    private boolean onlyToContainers;
     
     public static ConfigurationHandler getInstance() {
         if (instance==null)
@@ -68,7 +67,6 @@ public class ConfigurationHandler implements ModConfigurationHandler {
                 compiledPatterns[i] = null;
             }
         }
-        onlyToContainers=config.getBoolean("clickthrough.config.onlycontainers", Configuration.CATEGORY_CLIENT, false, "clickthrough.config.tt.onlycontainers");
         
         if (config.hasChanged())
             config.save();
@@ -89,9 +87,5 @@ public class ConfigurationHandler implements ModConfigurationHandler {
     
     public static Pattern getIgnorePattern(int row) {
         return getInstance().compiledPatterns[row];
-    }
-    
-    public static boolean onlyToContainers() {
-        return getInstance().onlyToContainers;
     }
 }
