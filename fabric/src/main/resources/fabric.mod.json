@@ -8,13 +8,12 @@
     "cassiancc"
   ],
   "contributors": [
-    "Giselbaer",
-    "triphora"
+    "Giselbaer"
   ],
   "contact": {
-  "homepage": "https://www.modrinth.com/mod/clickthrough",
-  "sources": "https://github.com/cassiancc/ClickThrough",
-  "issues": "https://github.com/cassiancc/ClickThrough/issues"
+  "homepage": "https://modrinth.com/mod/clickthrough+",
+  "sources": "https://github.com/cassiancc/ClickThrough-Plus",
+  "issues": "https://github.com/cassiancc/ClickThrough-Plus/issues"
 },
   "license": "MIT",
   "icon": "assets/clickthrough/icon.png",

@@ -1,6 +1,5 @@
 modLoader = "javafml"
 loaderVersion = "[4,)"
-#issueTrackerURL = ""
 license = "MIT"
 
 [[mods]]
@@ -12,6 +11,9 @@ description = '''
 Click through Signs and Item Frames to Chests and other containers - a port of ClickThrough to Architectury.
 '''
 logoFile = "assets/clickthrough/icon.png"
+issueTrackerURL = "https://github.com/cassiancc/ClickThrough-Plus/issues"
+displayURL="https://modrinth.com/mod/clickthrough+"
+modURL="https://modrinth.com/mod/clickthrough+"
 
 [[dependencies.clickthrough]]
 modId = "neoforge"
