@@ -14,7 +14,7 @@ You can still rotate items in item frames by sneaking and clicking them.
 
 ## Installation
 
-Item Descriptions is a completely clientside mod for Fabric and NeoForge.
+ClickThrough Plus is a completely clientside mod for Fabric and NeoForge.
 - On Fabric, [Fabric API](https://modrinth.com/mod/fabric-api) and Architectury API is required.
 - On NeoForge, Architectury API is required.
 - Mod settings are available with [Mod Menu](https://modrinth.com/mod/mod-menu) (only required on Fabric) and [Cloth Config](https://modrinth.com/mod/cloth-config).
