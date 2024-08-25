@@ -1,13 +1,26 @@
-![](https://minecraft.guntram.de/buttonmaker/?Fabric+Status:/Works/00ff00/ "This mod works with Fabric right now") ![](https://minecraft.guntram.de/buttonmaker/?Forge+Status:/Not+planned/ff0000/ "I will not make a Forge version of this mod. Don't ask. If you want a Forge version, the sourcecode is there for everybody. If you send me a GitHub pull request with a working version, I'll publish it.")
-![](https://minecraft.guntram.de/buttonmaker/?Client+side+mod/No+server+installation/19bfef/ "No need to install on servers")
+# ClickThrough Plus
 
-**When downloading, please make sure to go to the Files tab, and download the version for your modloader. The files have "fabric" or "forge" in their name. Curseforge doesn't always show the correct versions on the main page.**
+<p text-align='center'>
+<a href='https://modrinth.com/mod/pyrite/versions?l=fabric'><img alt="fabric" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/fabric_vector.svg"></a>
+<a href='https://modrinth.com/mod/pyrite/versions?l=neoforge&l=forge'><img alt="forge" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/forge_vector.svg"></a>
 
-This mod helps you access containers (chests, shulker boxes, barrels, but also hoppers, dispensers, ...) that are marked with a sign or item frame. Right-clicking a sign or item frame that's attached to a container will open the container instead.
+</center>
 
-Unlike other similar mods, it's purely client side, so it works on any kind of server - vanilla, modded, or spigot/paper.
+This mod helps you access containers (Chests, Shulker Boxes, Barrels, etc.) that are marked with a Sign or Item Frame. Right-clicking a sign or item frame that's attached to a container will open the container instead.
+
+ClickThrough Plus works clientside, and does not need to be installed on the server.
 
 You can still rotate items in item frames by sneaking and clicking them.
 
-The same goes for signs that have some functionality attached by the server, for example, buy/sell signs on a server that has ChestShop or a similar plugin enabled.
+## Installation
 
+Item Descriptions is a completely clientside mod for Fabric and NeoForge.
+- On Fabric, [Fabric API](https://modrinth.com/mod/fabric-api) and Architectury API is required.
+- On NeoForge, Architectury API is required.
+- Mod settings are available with [Mod Menu](https://modrinth.com/mod/mod-menu) (only required on Fabric) and [Cloth Config](https://modrinth.com/mod/cloth-config).
+
+## Credits
+
+If it's not obvious, this is a port of Giselbaer's ClickThrough to Architectury 1.21, allowing for the mod to be used on both loaders. ClickThrough is available under the [MIT License](https://github.com/gbl/ClickThrough/blob/fabric_1_20/LICENSE).
+
+Mod Menu/Cloth Config integration is based on the integration present in [idwtialsimmoedm](https://modrinth.com/mod/idwtialsimmoedm) under its [MIT License](https://github.com/gliscowo/idwtialsimmoedm/blob/1.21/LICENSE).

@@ -1,107 +1,73 @@
-buildscript {
-    dependencies {
-        classpath 'de.guntram.mcmod:crowdin-translate:1.4+1.19-pre2'
+plugins {
+    id 'dev.architectury.loom' version '1.6-SNAPSHOT' apply false
+    id 'architectury-plugin' version '3.4-SNAPSHOT'
+    id 'com.github.johnrengelman.shadow' version '8.1.1' apply false
+}
+
+architectury {
+    minecraft = project.minecraft_version
+}
+
+allprojects {
+    group = rootProject.maven_group
+    version = rootProject.mod_version
+}
+
+subprojects {
+    apply plugin: 'dev.architectury.loom'
+    apply plugin: 'architectury-plugin'
+    apply plugin: 'maven-publish'
+
+    base {
+        // Set up a suffixed format for the mod jar names, e.g. `example-fabric`.
+        archivesName = "$rootProject.archives_name-$project.name"
     }
+
     repositories {
-        maven {
-            name = 'CrowdinTranslate source'
-            url = "https://minecraft.guntram.de/maven/"
+        // Add repositories to retrieve artifacts from in here.
+        // You should only use this when depending on other mods because
+        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+        // for more information about repositories.
+    }
+
+    dependencies {
+        minecraft "net.minecraft:minecraft:$rootProject.minecraft_version"
+        mappings loom.layered {
+            it.mappings("net.fabricmc:yarn:$rootProject.yarn_mappings:v2")
+            it.mappings("dev.architectury:yarn-mappings-patch-neoforge:$rootProject.yarn_mappings_patch_neoforge_version")
         }
     }
-}
 
-plugins {
-    id 'fabric-loom' version '1.2-SNAPSHOT'
-    id "com.modrinth.minotaur" version "2.+"
-    id "com.matthewprenger.cursegradle" version "1.4.0"
-}
+    java {
+        // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+        // if it is present.
+        // If you remove this line, sources will not be generated.
+        withSourcesJar()
 
-apply plugin: 'de.guntram.mcmod.crowdin-translate'
-crowdintranslate.crowdinProjectName = 'clickthrough'
-
-repositories {
-    maven {
-        url = "file://tmp/mymavenrepo"
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
-    maven {
-        url = "https://maven.fabricmc.net"
+
+    tasks.withType(JavaCompile).configureEach {
+        it.options.release = 21
     }
-    maven {
-        url = "https://minecraft.guntram.de/maven/"
-    }
-    maven {
-        url = "https://maven.terraformersmc.com/releases/"
-    }
-    maven { url "https://maven.shedaniel.me/" }
-}
 
-sourceCompatibility = 17
-targetCompatibility = 17
+    // Configure Maven publishing.
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                artifactId = base.archivesName.get()
+                from components.java
+            }
+        }
 
-ext.Versions = new Properties()
-Versions.load(file("Versionfiles/mcversion-1.20.4.properties").newReader())
-
-archivesBaseName = "clickthrough"
-ext.projectVersion = "0.4.1"
-
-version = "${Versions['minecraft_version']}-fabric${Versions['fabric_versiononly']}-${project.projectVersion}"
-
-loom {
-    mixin.defaultRefmapName = "clickthrough-refmap.json";
-}
-
-processResources {
-    inputs.property "version", project.version
-
-    filesMatching("fabric.mod.json") {
-        expand "version": project.version
-    }
-}
-
-dependencies {
-    minecraft  "com.mojang:minecraft:${Versions['minecraft_version']}"
-    mappings   "net.fabricmc:yarn:${Versions['yarn_mappings']}:v2"
-    modImplementation "net.fabricmc:fabric-loader:${Versions['loader_version']}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${Versions['fabric_version']}"
-    modImplementation "com.terraformersmc:modmenu:${Versions['modmenu_version']}"
-    modImplementation "de.guntram.mcmod:GBfabrictools:${Versions['gbfabrictools_version']}"
-    include    "de.guntram.mcmod:GBfabrictools:${Versions['gbfabrictools_version']}"
-    modImplementation "de.guntram.mcmod:crowdin-translate:${Versions['crowdintranslate_version']}"
-    include "de.guntram.mcmod:crowdin-translate:${Versions['crowdintranslate_version']}"
-}
-
-java {
-    withSourcesJar()
-}
-
-jar {
-    from "LICENSE"
-}
-
-processResources {
-        dependsOn downloadTranslations
-}
-
-import com.modrinth.minotaur.TaskModrinthUpload
-
-modrinth {
-
-    projectId = 'clickthrough'
-    versionName = project.archivesBaseName
-    uploadFile = remapJar
-}
-
-curseforge {
-    apiKey = System.getenv("CURSEFORGE_TOKEN") ?: "0"
-    project {
-        id = '405262'
-        releaseType = 'release'
-        addGameVersion("${Versions['minecraft_version']}")
-        addGameVersion("Java "+targetCompatibility)
-        addGameVersion("Fabric")
-        mainArtifact(remapJar)
-    }
-    options {
-        forgeGradleIntegration = false
+        // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+        repositories {
+            // Add repositories to publish to here.
+            // Notice: This block does NOT have the same function as the block in the top level.
+            // The repositories here will be used for publishing your artifact, not for
+            // retrieving dependencies.
+        }
     }
 }

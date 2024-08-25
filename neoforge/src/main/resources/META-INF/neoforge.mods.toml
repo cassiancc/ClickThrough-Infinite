@@ -1,0 +1,38 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+#issueTrackerURL = ""
+license = "MIT"
+
+[[mods]]
+modId = "clickthrough"
+version = "${version}"
+displayName = "ClickThrough Plus"
+authors = "cassiancc"
+description = '''
+Click through Signs and Item Frames to Chests and other containers - a port of ClickThrough to Architectury.
+'''
+logoFile = "assets/clickthrough/icon.png"
+
+[[dependencies.clickthrough]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.0,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.clickthrough]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.clickthrough]]
+modId = "architectury"
+type = "required"
+versionRange = "[13.0.2,)"
+ordering = "AFTER"
+side = "CLIENT"
+
+[[mixins]]
+config = "clickthrough.mixins.json"
