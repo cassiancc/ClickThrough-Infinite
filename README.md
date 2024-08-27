@@ -1,10 +1,10 @@
 # ClickThrough Plus
 
 <center text-align='center'>
-<a href='https://modrinth.com/mod/pyrite/versions?l=fabric'><img alt="fabric" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/fabric_vector.svg"></a>
-<a href='https://modrinth.com/mod/pyrite/versions?l=neoforge&l=forge'><img alt="neoforge" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/forge_vector.svg"></a>
+<a href='https://modrinth.com/mod/clickthrough+/versions?l=fabric'><img alt="fabric" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/fabric_vector.svg"></a>
+<a href='https://modrinth.com/mod/clickthrough+/versions?l=neoforge&l=forge'><img alt="forge" height="56" src="https://resources.godsted.com/modrinth/NeoForge2.svg"></a>
 
-</center>
+</center><br>
 
 This mod helps you access containers (Chests, Shulker Boxes, Barrels, etc.) that are marked with a Sign or Item Frame. Right-clicking a sign or item frame that's attached to a container will open the container instead.
 
