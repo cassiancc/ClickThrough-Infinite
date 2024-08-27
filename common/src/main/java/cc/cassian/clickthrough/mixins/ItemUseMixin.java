@@ -43,22 +43,6 @@ public class ItemUseMixin {
         this.switchCrosshairTarget();
     }
 
-    @Inject(method="doAttack", at=@At(value="INVOKE",
-            target="Lnet/minecraft/client/network/ClientPlayerEntity;getStackInHand(Lnet/minecraft/util/Hand;)Lnet/minecraft/item/ItemStack;"))
-    public void switchCrosshairTargetAttack(CallbackInfoReturnable ci) {
-        if (config.switchonattack >= 1) {
-            this.switchCrosshairTarget();
-        }
-    }
-
-    @Inject(method="handleBlockBreaking", at=@At(value="INVOKE",
-            target="Lnet/minecraft/util/hit/HitResult;getType()Lnet/minecraft/util/hit/HitResult$Type;"))
-    public void switchCrosshairContinuedAttack(CallbackInfo ci) {
-        if (config.switchonattack >= 2) {
-            this.switchCrosshairTarget();
-        }
-    }
-
     private void switchCrosshairTarget() {
         if (!config.isActive) {
             return;

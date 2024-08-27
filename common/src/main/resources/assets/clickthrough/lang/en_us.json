@@ -8,7 +8,7 @@
     "clickthrough.config.ignore.4": "Ignore signs if row 4 matches: ",
     "clickthrough.config.onlycontainers": "Only click through to containers",
     "clickthrough.config.switchonattack": "Reroute left button as well",
-    "clickthrough.config.isActive": "Enable Clickthrough",
+    "clickthrough.config.isActive": "Enable ClickThrough",
 
 
     "clickthrough.config.tt.ignore.1": "Do not click through those signs for the benefit of chest shops",

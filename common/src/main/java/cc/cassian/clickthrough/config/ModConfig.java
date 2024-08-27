@@ -22,7 +22,6 @@ public class ModConfig {
     public boolean isActive = true;
     public boolean onlycontainers = true;
     public boolean sneaktodye = false;
-    public int switchonattack = 0;
 
 
     public static void load() {
