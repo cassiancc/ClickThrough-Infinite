@@ -8,7 +8,6 @@ pluginManagement {
 }
 
 rootProject.name = 'clickthrough'
-
 include 'common'
 include 'fabric'
-include 'neoforge'
+include 'forge'

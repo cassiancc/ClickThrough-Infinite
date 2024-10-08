@@ -1,6 +1,7 @@
-package cc.cassian.clickthrough.config.neoforge;
+package cc.cassian.clickthrough.config.forge;
 
-import net.neoforged.fml.loading.FMLLoader;
+
+import net.minecraftforge.fml.loading.FMLLoader;
 
 import java.nio.file.Path;
 

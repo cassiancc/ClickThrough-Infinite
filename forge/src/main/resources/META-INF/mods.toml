@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[4,)"
+loaderVersion = "[47,)"
 license = "MIT"
 
 [[mods]]
@@ -16,25 +16,22 @@ displayURL="https://modrinth.com/mod/clickthrough+"
 modURL="https://modrinth.com/mod/clickthrough+"
 
 [[dependencies.clickthrough]]
-modId = "neoforge"
-type = "required"
-versionRange = "[21.0,)"
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
 ordering = "NONE"
-side = "CLIENT"
+side = "BOTH"
 
 [[dependencies.clickthrough]]
 modId = "minecraft"
-type = "required"
-versionRange = "[1.21,)"
+mandatory = true
+versionRange = "[1.20.1,)"
 ordering = "NONE"
-side = "CLIENT"
+side = "BOTH"
 
 [[dependencies.clickthrough]]
 modId = "architectury"
-type = "required"
-versionRange = "[13.0.2,)"
+mandatory = true
+versionRange = "[9.2.14,)"
 ordering = "AFTER"
-side = "CLIENT"
-
-[[mixins]]
-config = "clickthrough.mixins.json"
+side = "BOTH"
