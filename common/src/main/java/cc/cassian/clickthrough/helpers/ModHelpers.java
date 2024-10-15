@@ -26,8 +26,7 @@ public class ModHelpers {
     }
 
     public static String getSignRowText(SignBlockEntity sign, int row) {
-        StringBuilder builder =  new StringBuilder();
-        return sign.getFrontText().getMessage(row, true).getString();
+        return sign.getTextOnRow(row, true).getString();
     }
 
 
