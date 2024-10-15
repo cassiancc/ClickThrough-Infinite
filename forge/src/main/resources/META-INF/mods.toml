@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[47,)"
+loaderVersion = "[43,)"
 license = "MIT"
 
 [[mods]]
@@ -10,7 +10,7 @@ authors = "cassiancc"
 description = '''
 Click through Signs and Item Frames to Chests and other containers - a port of ClickThrough to Architectury.
 '''
-logoFile = "assets/clickthrough/icon.png"
+logoFile = "icon.png"
 issueTrackerURL = "https://github.com/cassiancc/ClickThrough-Plus/issues"
 displayURL="https://modrinth.com/mod/clickthrough+"
 modURL="https://modrinth.com/mod/clickthrough+"
@@ -18,20 +18,20 @@ modURL="https://modrinth.com/mod/clickthrough+"
 [[dependencies.clickthrough]]
 modId = "forge"
 mandatory = true
-versionRange = "[47,)"
+versionRange = "[43,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.clickthrough]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.20.1,)"
+versionRange = "[1.19.1,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.clickthrough]]
 modId = "architectury"
 mandatory = true
-versionRange = "[9.2.14,)"
+versionRange = "[6.6.92,)"
 ordering = "AFTER"
 side = "BOTH"
