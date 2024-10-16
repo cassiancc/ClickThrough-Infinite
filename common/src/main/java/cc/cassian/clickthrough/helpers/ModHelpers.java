@@ -4,6 +4,7 @@ import cc.cassian.clickthrough.config.ModConfig;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 
 import java.lang.reflect.Field;
 import java.util.*;
@@ -32,7 +33,7 @@ public class ModHelpers {
 
     //Automatically generate translation keys for config options.
     public static Text fieldName(Field field) {
-        return Text.translatable("clickthrough.config." + field.getName());
+        return new TranslatableText("clickthrough.config." + field.getName());
     }
 
 

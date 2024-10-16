@@ -2,7 +2,8 @@ package cc.cassian.clickthrough.forge;
 
 import cc.cassian.clickthrough.ClickThrough;
 import cc.cassian.clickthrough.config.forge.ModConfigFactory;
-import net.minecraftforge.client.ConfigScreenHandler;
+import cc.cassian.clickthrough.helpers.ModHelpers;
+import net.minecraftforge.client.ConfigGuiHandler;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 
@@ -19,7 +20,9 @@ public final class ClickthroughForge {
 
     //Integrate Cloth Config screen (if mod present) with Forge mod menu.
     public void registerModsPage() {
-        ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () -> new ConfigScreenHandler.ConfigScreenFactory(ModConfigFactory::createScreen));
+        if (ModHelpers.clothConfigInstalled()) {
+            ModLoadingContext.get().registerExtensionPoint(ConfigGuiHandler.ConfigGuiFactory.class, () -> new ConfigGuiHandler.ConfigGuiFactory(ModConfigFactory::createScreen));
+        }
     }
 
 

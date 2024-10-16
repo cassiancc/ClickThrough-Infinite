@@ -10,6 +10,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.text.TranslatableText;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import net.minecraft.text.Text;
@@ -55,7 +56,7 @@ public class ClickThrough
     public static void setActive() {
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
         if (player != null) {
-            player.sendMessage(Text.translatable("clickthrough.msg.active"), false);
+            player.sendMessage(new TranslatableText("clickthrough.msg.active"), false);
         }
         ModConfig.get().isActive = true;
     }
@@ -63,7 +64,7 @@ public class ClickThrough
     public static void setInActive() {
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
         if (player != null) {
-            player.sendMessage(Text.translatable("clickthrough.msg.inactive"), false);
+            player.sendMessage(new TranslatableText("clickthrough.msg.inactive"), false);
         }
         ModConfig.get().isActive = false;
     }
