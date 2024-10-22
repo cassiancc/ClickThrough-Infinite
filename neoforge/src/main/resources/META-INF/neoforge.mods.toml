@@ -18,7 +18,7 @@ modURL="https://modrinth.com/mod/clickthrough+"
 [[dependencies.clickthrough]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.2,)"
+versionRange = "[21.0,)"
 ordering = "NONE"
 side = "CLIENT"
 
