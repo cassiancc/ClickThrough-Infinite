@@ -6,4 +6,7 @@ public class ModHelpersImpl {
     public static boolean clothConfigInstalled() {
         return FabricLoader.getInstance().isModLoaded("cloth-config");
     }
+    public static boolean architecturyInstalled() {
+        return FabricLoader.getInstance().isModLoaded("architectury");
+    }
 }
