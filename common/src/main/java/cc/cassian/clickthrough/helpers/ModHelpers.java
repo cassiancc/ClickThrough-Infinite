@@ -25,6 +25,12 @@ public class ModHelpers {
         throw new AssertionError();
     }
 
+    //Check if Architectury API is installed and its methods can be used.
+    @ExpectPlatform
+    public static boolean architecturyInstalled() {
+        throw new AssertionError();
+    }
+
     public static String getSignRowText(SignBlockEntity sign, int row) {
         StringBuilder builder =  new StringBuilder();
         return sign.getFrontText().getMessage(row, true).getString();
