@@ -1,14 +1,15 @@
 package cc.cassian.clickthrough.mixins;
 
 import static cc.cassian.clickthrough.helpers.ModHelpers.config;
+import static cc.cassian.clickthrough.helpers.ModHelpers.isClickableBlockAt;
 
 import cc.cassian.clickthrough.ClickThrough;
+import cc.cassian.clickthrough.helpers.ModHelpers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.WallBannerBlock;
 import net.minecraft.block.WallSignBlock;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.LockableContainerBlockEntity;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -24,10 +25,10 @@ import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 
 @Mixin(MinecraftClient.class)
@@ -40,10 +41,11 @@ public class ItemUseMixin {
     @Inject(method="doItemUse", at=@At(value="INVOKE",
             target="Lnet/minecraft/client/network/ClientPlayerEntity;getStackInHand(Lnet/minecraft/util/Hand;)Lnet/minecraft/item/ItemStack;"))
     public void switchCrosshairTargetItemUse(CallbackInfo ci) {
-        this.switchCrosshairTarget();
+        this.clickthrough$switchCrosshairTarget();
     }
 
-    private void switchCrosshairTarget() {
+    @Unique
+    private void clickthrough$switchCrosshairTarget() {
         if (!config.isActive) {
             return;
         }
@@ -53,7 +55,7 @@ public class ItemUseMixin {
                 // copied from AbstractDecorationEntity#canStayAttached
                 BlockPos attachedPos = itemFrame.getDecorationBlockPos().offset(itemFrame.getHorizontalFacing().getOpposite());
                 // System.out.println("Item frame attached to "+state.getBlock().getTranslationKey()+" at "+blockPos.toShortString());
-                if (!player.isSneaking() && isClickableBlockAt(attachedPos)) {
+                if (!player.isSneaking() && isClickableBlockAt(attachedPos, world)) {
                     this.crosshairTarget = new BlockHitResult(crosshairTarget.getPos(), itemFrame.getHorizontalFacing(), attachedPos, false);
                 }
             }
@@ -63,7 +65,7 @@ public class ItemUseMixin {
                 Block block = state.getBlock();
                 if (block instanceof WallSignBlock) {
                     BlockPos attachedPos = blockPos.offset(state.get(WallSignBlock.FACING).getOpposite());
-                    if (!isClickableBlockAt(attachedPos)) {
+                    if (!isClickableBlockAt(attachedPos, world)) {
                         return;
                     }
                     BlockEntity entity = world.getBlockEntity(blockPos);
@@ -78,9 +80,6 @@ public class ItemUseMixin {
                             if (!player.isSneaking()) {
                                 this.crosshairTarget = new BlockHitResult(crosshairTarget.getPos(), ((BlockHitResult) crosshairTarget).getSide(), attachedPos, false);
                             }
-                        } else {
-                            // Don't switch the target; default action of dyeing the sign itself
-                            return;
                         }
                     } else {
                         if (!player.isSneaking()) {
@@ -89,7 +88,7 @@ public class ItemUseMixin {
                     }
                 } else if (block instanceof WallBannerBlock) {
                     BlockPos attachedPos = blockPos.offset(state.get(WallBannerBlock.FACING).getOpposite());
-                    if (isClickableBlockAt(attachedPos)) {
+                    if (ModHelpers.isClickableBlockAt(attachedPos, world)) {
                         this.crosshairTarget = new BlockHitResult(crosshairTarget.getPos(), ((BlockHitResult)crosshairTarget).getSide(), attachedPos, false);
                     }
                 }
@@ -97,11 +96,5 @@ public class ItemUseMixin {
         }
     }
 
-    private boolean isClickableBlockAt(BlockPos pos) {
-        if (!config.onlycontainers) {
-            return true;
-        }
-        BlockEntity entity = world.getBlockEntity(pos);
-        return (entity instanceof LockableContainerBlockEntity);
-    }
+
 }

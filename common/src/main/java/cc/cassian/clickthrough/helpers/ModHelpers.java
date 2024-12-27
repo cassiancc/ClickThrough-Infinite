@@ -2,8 +2,14 @@ package cc.cassian.clickthrough.helpers;
 
 import cc.cassian.clickthrough.config.ModConfig;
 import dev.architectury.injectables.annotations.ExpectPlatform;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.LockableContainerBlockEntity;
 import net.minecraft.block.entity.SignBlockEntity;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.text.Text;
+import net.minecraft.util.math.BlockPos;
+import org.spongepowered.asm.mixin.Unique;
 
 import java.lang.reflect.Field;
 import java.util.*;
@@ -62,5 +68,22 @@ public class ModHelpers {
                 throw new RuntimeException(e);
             }
         };
+    }
+
+    @ExpectPlatform
+    public static boolean isTaggedAsContainer(BlockState state) {
+        throw new AssertionError();
+    }
+
+    @Unique
+    public static boolean isClickableBlockAt(BlockPos pos, ClientWorld world) {
+        if (!config.onlycontainers) {
+            return true;
+        }
+        BlockEntity entity = world.getBlockEntity(pos);
+        var state = world.getBlockState(pos);
+        if (entity instanceof LockableContainerBlockEntity)
+            return true;
+        return (ModHelpers.isTaggedAsContainer(state));
     }
 }
