@@ -30,12 +30,12 @@
     "clickthrough.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.16.7",
+    "fabricloader": ">=0.16.2",
     "minecraft": "~1.21",
     "java": ">=21",
     "fabric-api": "*"
   },
-  "suggests": {
+  "recommends": {
     "architectury": "*",
     "cloth-config": "*",
     "modmenu": "*"
