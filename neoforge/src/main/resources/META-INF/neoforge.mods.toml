@@ -25,14 +25,14 @@ side = "CLIENT"
 [[dependencies.clickthrough]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21,)"
+versionRange = "[1.21.2,)"
 ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.clickthrough]]
 modId = "architectury"
 type = "required"
-versionRange = "[13.0.2,)"
+versionRange = "[14.0.2,)"
 ordering = "AFTER"
 side = "CLIENT"
 
