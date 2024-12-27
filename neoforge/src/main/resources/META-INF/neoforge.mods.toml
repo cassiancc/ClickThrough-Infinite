@@ -32,7 +32,7 @@ side = "CLIENT"
 [[dependencies.clickthrough]]
 modId = "architectury"
 type = "required"
-versionRange = "[13.0.2,)"
+versionRange = "[14.0.2,)"
 ordering = "AFTER"
 side = "CLIENT"
 

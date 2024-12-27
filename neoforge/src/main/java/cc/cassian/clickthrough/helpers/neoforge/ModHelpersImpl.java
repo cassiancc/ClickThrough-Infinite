@@ -12,4 +12,8 @@ public class ModHelpersImpl {
     public static boolean isTaggedAsContainer(BlockState state) {
         return state.isIn(Tags.Blocks.CHESTS) || state.isIn(Tags.Blocks.BARRELS);
     }
+    public static boolean architecturyInstalled() {
+        return ModList.get().isLoaded("architectury");
+    }
+
 }

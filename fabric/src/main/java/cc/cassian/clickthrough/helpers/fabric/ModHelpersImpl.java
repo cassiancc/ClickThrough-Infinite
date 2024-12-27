@@ -10,6 +10,10 @@ public class ModHelpersImpl {
     }
 
     public static boolean isTaggedAsContainer(BlockState state) {
-        return state.isIn(ConventionalBlockTags.CHESTS) || state.isIn(ConventionalBlockTags.BARRELS);
+        return state.isIn(ConventionalBlockTags.CHESTS) || state.isIn(ConventionalBlockTags.BARRELS); 
+    }
+    
+    public static boolean architecturyInstalled() {
+        return FabricLoader.getInstance().isModLoaded("architectury");
     }
 }

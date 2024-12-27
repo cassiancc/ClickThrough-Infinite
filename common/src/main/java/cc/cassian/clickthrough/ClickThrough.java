@@ -3,9 +3,6 @@ package cc.cassian.clickthrough;
 
 
 import cc.cassian.clickthrough.config.ModConfig;
-import dev.architectury.event.events.client.ClientTickEvent;
-import dev.architectury.registry.client.keymappings.KeyMappingRegistry;
-import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
@@ -13,6 +10,8 @@ import net.minecraft.client.util.InputUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import net.minecraft.text.Text;
+
+import static cc.cassian.clickthrough.helpers.ModHelpers.architecturyInstalled;
 
 public class ClickThrough
 {
@@ -24,23 +23,17 @@ public class ClickThrough
 
     public static void init() {
         ModConfig.load();
-        KeyMappingRegistry.register(onoff);
-        ClientTickEvent.CLIENT_POST.register(minecraft -> {
-            while (onoff.wasPressed()) {
-                if (ModConfig.get().isActive) {
-                    setInActive();
-                } else {
-                    setActive();
-                }
+        if (architecturyInstalled()) {
+            ArchitecturyImpl.load();
+            LOGGER.info("Successfully initialized ClickThrough Plus. Signs are now out of the way!");
+        }
+        else {
+            LOGGER.info("ClickThrough Plus running without Architectury. Keybinds are not avaialble.!");
+        }
 
-            }
-        });
-        LOGGER.info("Successfully initialized ClickThrough Plus. Signs are now out of the way!");
     }
 
     static public boolean isDyeOnSign = false;
-
-
 
     // A key mapping with keyboard as the default
     public static final KeyBinding onoff = new KeyBinding(
