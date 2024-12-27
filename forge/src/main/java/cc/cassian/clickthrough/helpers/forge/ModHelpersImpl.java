@@ -1,6 +1,9 @@
 package cc.cassian.clickthrough.helpers.forge;
 
 
+import net.minecraft.block.BlockState;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.ModList;
 
 public class ModHelpersImpl {

@@ -14,8 +14,8 @@ forgix {
     group = "cc.cassian"
     mergedJarName = "clickthrough-plus-${mod_version}.jar"
     neoforge {
-        projectName = "neoforge"
-        jarLocation = "build/libs/clickthrough-plus-neoforge-${mod_version}.jar"
+        projectName = "forge"
+        jarLocation = "build/libs/clickthrough-plus-forge-${mod_version}.jar"
     }
 
     fabric {
